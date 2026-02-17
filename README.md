@@ -1,138 +1,110 @@
-📦 Stock Control
+# 📦 Stock Control
 
-Sistema de controle de estoque desenvolvido como desafio técnico.
+Sistema de controle de estoque desenvolvido como desafio técnico.  
+Inclui **backend em Spring Boot** e **frontend em React (Vite)**, com testes de integração em **Cypress**.  
+Banco de dados utilizado: **MySQL** (configurado via MySQL Workbench).  
+Frontend publicado na **Vercel** para acesso online.
 
-O projeto é composto por:
+---
 
-Backend em Spring Boot
+## 🚀 Tecnologias utilizadas
+- **Backend**: Java, Spring Boot, Maven, JPA/Hibernate, MySQL  
+- **Frontend**: React, Vite, Axios  
+- **Testes**: Cypress (end-to-end)  
+- **Deploy**: Vercel (frontend)  
 
-Frontend em React
+---
 
-Testes end-to-end com Cypress
-
-Banco de dados MySQL
-
-Deploy do frontend na Vercel
-
-🚀 Tecnologias Utilizadas
-🔹 Backend
-
-Java
-
-Spring Boot
-
-Maven
-
-JPA / Hibernate
-
-MySQL
-
-🔹 Frontend
-
-React
-
-Vite
-
-Axios
-
-🔹 Testes
-
-Cypress (End-to-End)
-
-🔹 Deploy
-
-Vercel (Frontend)
-
-📂 Estrutura do Projeto
+## 📂 Estrutura do projeto
+```
 stock-control/
-│
-├── backend/        # API REST - Spring Boot
-├── frontend/       # Interface React
-└── README.md       # Documentação do projeto
-⚙️ Como Rodar o Projeto Localmente
-1️⃣ Banco de Dados (MySQL)
+│── backend/   -> código Spring Boot
+│── frontend/  -> código React (Vite)
+└── README.md  -> instruções gerais
+```
 
-Crie o banco no MySQL:
+---
+
+## ⚙️ Como rodar o projeto localmente
+
+### 1. Banco de Dados (MySQL)
+Crie um banco chamado `stock_control` no MySQL Workbench:
+
+```sql
 CREATE DATABASE stock_control;
-Configure o arquivo application.properties no backend:
+Configure usuário e senha no arquivo do backend (application.properties):
 spring.datasource.url=jdbc:mysql://localhost:3306/stock_control
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-2️⃣ Rodando o Backend
+```
+### 2. Backend
+```
 cd backend
 mvn spring-boot:run
 Servidor disponível em: http://localhost:8080
-3️⃣ Rodando o Frontend
+```
+### 3. Frontend
+```
 cd frontend
 npm install
 npm run dev
 Aplicação disponível em: http://localhost:5173
-
+```
 🌐 Deploy na Vercel
 O frontend foi publicado na Vercel.
+Após rodar npm run build, basta conectar o repositório GitHub à Vercel e o deploy será automático.
 
-Para realizar o deploy:
+URL pública: Stock Control Online
 
-1.Execute: npm run build
-2.Conecte o repositório GitHub à Vercel.
+📌 Endpoints principais (Backend)
+Produtos
+POST /products – criar produto
 
-3.O deploy será realizado automaticamente.
+GET /products – listar produtos
 
-🔗 URL pública:
-(adicione aqui o link gerado pela Vercel)
-📌 Endpoints Principais (Backend)
-🧾 Produtos
+PUT /products/{id} – atualizar produto
 
-POST /products → Criar produto
+DELETE /products/{id} – excluir produto
 
-GET /products → Listar produtos
+Matérias-primas
+POST /raw-materials – criar matéria-prima
 
-PUT /products/{id} → Atualizar produto
+GET /raw-materials – listar matérias-primas
 
-DELETE /products/{id} → Excluir produto
+BOM (Bill of Materials)
+POST /bill-of-material-items – associar produto ↔ matéria-prima
 
-🏗 Matérias-Primas
+GET /bill-of-material-items – listar associações
 
-POST /raw-materials → Criar matéria-prima
+Sugestões de Produção
+GET /production-suggestions – calcular produtos sugeridos com base no estoque
 
-GET /raw-materials → Listar matérias-primas
+✅ Requisitos atendidos
+RF001–RF004: Backend implementado (CRUDs + cálculo de sugestões)
 
-🧩 BOM (Bill of Materials)
+RF005–RF008: Frontend implementado (CRUDs + tela de sugestões)
 
-POST /bill-of-material-items → Associar produto ↔ matéria-prima
-
-GET /bill-of-material-items → Listar associações
-
-📊 Sugestões de Produção
-
-GET /production-suggestions → Calcular produtos sugeridos com base no estoque
+Testes de integração: Cypress validando CRUD de produtos e sugestões
 
 🧪 Testes com Cypress
-
-Para rodar os testes end-to-end: cd frontend
+Para rodar os testes de integração:
+cd frontend
 npx cypress open
 Selecione os arquivos em cypress/e2e/:
 
-product.cy.js → Valida CRUD de produtos
+product.cy.js → valida CRUD de produtos
 
-suggestions.cy.js → Valida tela de sugestões de produção
+suggestions.cy.js → valida tela de sugestões de produção
+📖 Observações
+Backend configurado para usar MySQL (via MySQL Workbench).
 
-✅ Requisitos Atendidos
+CORS habilitado para permitir comunicação com o frontend.
 
-RF001–RF004 → Backend implementado (CRUDs + cálculo de sugestões)
-
-RF005–RF008 → Frontend implementado (CRUDs + tela de sugestões)
-
-Testes E2E com Cypress validando funcionalidades principais
-
-📖 Observações Técnicas
-
-Backend configurado para MySQL.
-
-CORS habilitado para integração com o frontend.
-
-Estrutura organizada para facilitar manutenção e deploy.
+Projeto organizado em pastas separadas para facilitar manutenção e deploy.
 
 Frontend publicado na Vercel para acesso online.
+https://stock-control-roan.vercel.app/
+---
+
